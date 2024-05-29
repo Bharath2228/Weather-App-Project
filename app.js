@@ -1,116 +1,46 @@
 // weather App project
 
-const weatherForm = document.querySelector(".weatherForm")
-const cityInput = document.querySelector(".city");
-const card = document.querySelector(".card");
-const apikey = "115adba2aef0c1b5bbc0d548d6543bee";
+let weather = {
+    "apiKey": "115adba2aef0c1b5bbc0d548d6543bee",
+    fetchWeather: function(city){
+        fetch("https://api.openweathermap.org/data/2.5/weather?q="
+                + city 
+                + "&units=metric&appid="
+                + this.apiKey)
+        .then((response) => response.json())
+        .then((data) => this.displayWeather(data))
+    },
+    displayWeather: function(data) {
+        const { name } = data;
+        const { icon, description } = data.weather[0]
+        const { temp, humidity } = data.main;
+        const { speed } = data.wind
+        console.log(name, icon, description, temp, humidity, speed)
+        document.querySelector('.city').innerText = "Weather in " + name;
+        document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon +".png";
+        document.querySelector(".description").innerText = description;
+        document.querySelector(".temp").innerText = temp + " °C"
+        document.querySelector(".humidity").innerText = "Humidity: " + humidity +"%"
+        document.querySelector(".wind").innerText = "Wind Speed: " + speed +" km/h"
+        document.querySelector(".weather").classList.remove("loading")
+        document.body.style.background = "url('https://source.unsplash.com/random?"+ name +"')"
+        document.body.style.backgroundRepeat = "no-repeat"
+        document.body.style.backgroundSize = "cover"
+    },
 
-weatherForm.addEventListener("submit", async event => {
-
-    event.preventDefault() // to stop refreshing the form
-
-    const city = cityInput.value;
-
-    if(city){
-        try{
-            const weatherData = await getWeatherData(city);
-            displayWeatherInfo(weatherData);
-        }
-        catch(error){
-            console.error(error)
-            displayError(error)
-        }
-    }else{
-        displayError("Please Enter a City")
+    search: function(){
+        this.fetchWeather(document.querySelector(".search-bar").value)
     }
-});
+};
 
-async function getWeatherData(city){
+document.querySelector(".search-button").addEventListener('click', () => {
+    weather.search()
+})
 
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
-
-    const response = await fetch(apiUrl);
-
-    if(!response.ok){
-        throw new Error("Could not fetch weather data")
+document.querySelector(".search-bar").addEventListener('keyup', event => {
+    if(event.key == "Enter"){
+        weather.search()
     }
+})
 
-    return await response.json();
-
-}
-function displayWeatherInfo(data){
-    
-    const {name: city, 
-           main: {temp, humidity}, 
-           weather: [{description, id}]} = data
-
-    card.textContent = ""
-    card.style.display = "flex"
-    
-    const cityDisplay = document.createElement("h1")
-    const tempDisplay = document.createElement("p")
-    const humidityDisplay = document.createElement("p")
-    const descDisplay = document.createElement("p")
-    const weatherEmoji = document.createElement("p")
-
-    cityDisplay.textContent = city;
-    tempDisplay.textContent = `${(temp - 273.15).toFixed(1)}°C`
-    humidityDisplay.textContent = `Humidity: ${humidity}`;
-    descDisplay.textContent = description;
-    weatherEmoji.textContent = getWeatherEmoji(id)
-
-    cityDisplay.classList.add("cityDisplay")
-    tempDisplay.classList.add("tempDisplay")
-    humidityDisplay.classList.add("humidity")
-    descDisplay.classList.add("descDisplay")
-    weatherEmoji.classList.add("WeatherEmoji")
-
-    card.appendChild(cityDisplay)
-    card.appendChild(tempDisplay)
-    card.appendChild(humidityDisplay)
-    card.appendChild(descDisplay)
-    card.appendChild(weatherEmoji)
-}
-
-function getWeatherEmoji(weatherID){
-
-    switch(true){
-        case (weatherID >= 200 && weatherID < 300):
-            return "⛈️"
-        
-        case (weatherID >= 300 && weatherID < 400):
-            return "🌧️"
-
-        case (weatherID >= 500 && weatherID < 600):
-            return "🌧️"
-
-        case (weatherID >= 600 && weatherID < 700):
-            return "❄️"
-        
-        case (weatherID >= 700 && weatherID < 800):
-            return "🌫️"    
-
-        case (weatherID === 800):
-            return "☀️"
-
-        case (weatherID >= 801 && weatherID < 810):
-            return "☁️"
-
-        default:
-            return "❓"
-        }
-           
-    }
-
-function displayError(message){
-
-    const errorDisplay = document.createElement("p")
-    errorDisplay.textContent = message;
-
-    errorDisplay.classList.add("errorDisplay")
-
-    card.textContent = "";
-    card.style.display = "flex"
-    card.appendChild(errorDisplay)
-
-}
+weather.fetchWeather("Bengaluru");
