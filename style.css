@@ -1,27 +1,36 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(420px, 1fr));
+    grid-gap: 10px;
     height: 100vh;
     margin: 0;
     background: #222;
     font-family: arial;
-    background-image: url('https://source.unsplash.com/random?');
-    font-size: 120%;
+    background-image: url('https://source.unsplash.com/1600x900/?');
+    font-size: auto;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.card{
+.card1, 
+.card2, 
+.card3, 
+.card4, 
+.card5, 
+.card6{
+    height: fit-content;
     background: #000000d0;
     color: white;
     padding: 2em;
     border-radius: 30px;
     width: 100%;
     max-width: 420px;
-    margin: 1em;
-    letter-spacing: 1px;
-    
+    margin: 1em auto;
+    letter-spacing: 1px; 
 }
 
 .search {
@@ -40,7 +49,7 @@ button{
     background: #7c7c7c2b;
     color: white; 
     cursor: pointer;
-    transition: 0.2s ease-in-out;
+    transition: 0.2s ease-in-out;1
 }
 
 button:hover{
@@ -79,7 +88,25 @@ button:hover{
     align-items: center;
 }
 
-.weather.loading{
+.card1-info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card1-info p{
+    white-space: nowrap;
+}
+
+.left-column {
+    flex: 1;
+}
+
+.right-column {
+    flex: 1;
+    text-align: left;
+}
+
+/* .weather.loading{
     visibility: hidden;
     max-height: 20px;
 }
@@ -90,4 +117,4 @@ button:hover{
     font-size: 20px;
     font-weight: bold;
     color: white;
-}
+} */
