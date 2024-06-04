@@ -11,6 +11,14 @@ let weather = {
         .then((response) => response.json())
         .then((data) => {
             this.displayCityDetails(data);
+        })
+
+        fetch("https://api.openweathermap.org/data/2.5/weather?q="
+                + city 
+                + "&units=metric&appid="
+                + this.apiKey)
+        .then((response) => response.json())
+        .then((data) => {
             this.displayWeather(data);
         })
     },
@@ -18,27 +26,37 @@ let weather = {
     displayCityDetails: function(data) {
 
         const { name, sunrise, sunset, country} = data.city;
+        const imageDiv = document.querySelector('.card1');
+        imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ name +"')"
+        imageDiv.style.backgroundRepeat = "no-repeat"
+        imageDiv.style.backgroundSize = "cover"
         document.querySelector('.city').innerText = "City: " + name;
         document.querySelector('.sunrise').innerText = `Sunrise 🌄: ${convertUnixTime(sunrise)}`
         document.querySelector('.sunset').innerText = `Sunset 🌇: ${convertUnixTime(sunset)}`
         document.querySelector('.country').innerText = `Counrty: ${country}`
         document.querySelector('.date').innerText = getTodaysDate()
         setInterval(updateClock, 1000)
-        document.body.style.background = "url('https://source.unsplash.com/1600x900/?"+ name +"')"
-        document.body.style.backgroundRepeat = "no-repeat"
-        document.body.style.backgroundSize = "cover"
     },
 
     displayWeather: function(data){
 
         console.log(data)
-        // const { icon, description } = data.weather[0]
+        const { icon, description } = data.weather[0]
+        const { temp, feels_like, temp_min, temp_max } = data.main
+        document.querySelector(".description").innerText = description;
         // const { temp, humidity } = data.main;
         // const { speed } = data.wind        
-
-        // document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon +".png";
-        // document.querySelector(".description").innerText = description;
-        // document.querySelector(".temp").innerText = temp + " °C"
+        console.log(icon, description, temp, feels_like)
+        document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon +".png";
+        const imageDiv = document.querySelector('.card2');
+        imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ description +"')"
+        imageDiv.style.backgroundRepeat = "no-repeat"
+        imageDiv.style.backgroundSize = "cover"
+        document.querySelector(".temp").innerText = temp + " °C"
+        document.querySelector(".feelsLike").innerText = `Feels Like ${feels_like} °C`
+        document.querySelector('.tempminmax').innerText = `${temp_min} ~ ${temp_max} °C`
+        
+        
         // document.querySelector(".humidity").innerText = "Humidity: " + humidity +"%"
         // document.querySelector(".wind").innerText = "Wind Speed: " + speed +" km/h"
     },
