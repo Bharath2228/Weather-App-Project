@@ -4,14 +4,13 @@
 }
 
 body{
-    display: grid;
-    grid-template-columns: repeat(3, minmax(450px, 1fr));
-    grid-gap: 10px;
     height: 100vh;
     margin: 0;
     background: #222;
     font-family: arial;
-    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     font-size: auto;
     background-repeat: no-repeat;
     background-size: cover;
@@ -135,6 +134,23 @@ button:hover{
 
 .description{
     text-transform: capitalize;
+}
+
+.card4{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.weatherEntry{
+    background: #222222be;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.weatherEntry p{
+    margin: 0;
 }
 
 /* .weather.loading{

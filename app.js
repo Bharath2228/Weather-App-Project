@@ -11,6 +11,7 @@ let weather = {
         .then((response) => response.json())
         .then((data) => {
             this.displayCityDetails(data);
+            this.presentDayEntireWeatherReport(data);
         })
 
         fetch("https://api.openweathermap.org/data/2.5/weather?q="
@@ -40,13 +41,9 @@ let weather = {
 
     displayWeather: function(data){
 
-        console.log(data)
         const { icon, description } = data.weather[0]
         const { temp, feels_like, temp_min, temp_max } = data.main
         document.querySelector(".description").innerText = description;
-        // const { temp, humidity } = data.main;
-        // const { speed } = data.wind        
-        console.log(icon, description, temp, feels_like)
         document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon +".png";
         const imageDiv = document.querySelector('.card2');
         imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ description +"')"
@@ -55,10 +52,59 @@ let weather = {
         document.querySelector(".temp").innerText = temp + " °C"
         document.querySelector(".feelsLike").innerText = `Feels Like ${feels_like} °C`
         document.querySelector('.tempminmax').innerText = `${temp_min} ~ ${temp_max} °C`
-        
-        
+   
         // document.querySelector(".humidity").innerText = "Humidity: " + humidity +"%"
         // document.querySelector(".wind").innerText = "Wind Speed: " + speed +" km/h"
+    },
+
+    presentDayEntireWeatherReport: function(data){
+        console.log(data)
+        const temps = []
+        const icons = []
+        const time = []
+        const weatherDataDiv = document.querySelector('.card4')
+        const now = new Date()
+
+        lengthofList = data.list.length
+
+        for (let i = 0; i < lengthofList; i++){
+
+            if(getDatefromDt(data.list[i].dt) ===  now.getDate()){
+                console.log(data.list[i].main)
+                temps.push(data.list[i].main.temp)
+                icons.push(data.list[i].weather[0].icon)
+                time.push(convertUnixTime(data.list[i].dt).toString())
+                
+            }
+        }
+
+        if(temps.length == time.length){
+            for (let i = 0; i < temps.length; i++) {
+                
+                const EntryDiv = document.createElement('div')
+                EntryDiv.classList.add('weatherEntry')
+
+                const temp = document.createElement('p')
+                temp.textContent = `${Math.floor(temps[i])} °C`
+                EntryDiv.appendChild(temp)
+
+                const icon = document.createElement('img')
+                icon.src = "https://openweathermap.org/img/wn/" + icons[i] +".png";
+                EntryDiv.appendChild(icon)
+
+                const timeEle = document.createElement('p')
+                timeEle.textContent = `${time[i]}`
+                EntryDiv.appendChild(timeEle)
+
+                weatherDataDiv.appendChild(EntryDiv)
+
+            }
+        }
+
+        console.log(temps)
+        console.log(icons)
+        console.log(time)
+
     },
 
     search: function(){
@@ -66,6 +112,14 @@ let weather = {
     }
 };
 
+function getDatefromDt(dt){
+
+    const date = new Date(dt * 1000)
+    // console.log(date)
+    NowDate = date.getDate()
+    return NowDate;
+
+}
 
 function getTodaysDate(){
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -84,21 +138,9 @@ function convertUnixTime(timefromAPI){
     const date = new Date(timefromAPI * 1000)
     hour = date.getHours()
     min = date.getMinutes()
+    console.log(hour, min)
 
-    const meridiem = hour >= 12 ? "PM" : "AM"
-
-    if (hour > 12){
-        timeFormat = `${(hour % 10) - 2}:${min} ${meridiem}`
-    } else 
-    if(hour == 12){
-        timeFormat = `${hour}:${min} PM`
-    }
-    else if(hour == 0){
-        timeFormat = `${12}:${min} AM`
-    }
-    else{
-        timeFormat = `${hour}:${min} ${meridiem}`
-    }
+    timeFormat = `${hour}:${min}`
     return timeFormat;
 }
 
