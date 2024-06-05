@@ -12,6 +12,7 @@ body{
     flex-wrap: wrap;
     gap: 20px;
     font-size: auto;
+    background: url('https://source.unsplash.com/random? Weather');
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -151,6 +152,53 @@ button:hover{
 
 .weatherEntry p{
     margin: 0;
+}
+
+.card3 p{
+    font-size: 1em;
+}
+
+.card3 img{
+    width: 2em;
+    font-size: 2.5em;
+    
+}
+
+.card3{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    flex-wrap: wrap;
+    gap: 10px;
+    text-align: center;
+    background: #f9f8f846;
+}
+
+.weatherDetails{
+    padding: 0;
+    width: 150px;
+}
+
+.card5{
+    background: hsla(203, 71%, 44%, 0.797);
+}
+.otherWeatherEntry{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    
+}
+
+.dateMonthDiv {
+    width: 60px;
+    max-height: 100px;
+    
+
+}
+
+.dateMonthDiv p {
+    font-size: 100%;
+    white-space: nowrap;
+    overflow: hidden; 
 }
 
 /* .weather.loading{
