@@ -57,24 +57,27 @@ let weather = {
     },
 
     presentDayEntireWeatherReport: function(data){
+        console.log(data)
         const temps = []
         const icons = []
         const time = []
         const weatherDataDiv = document.querySelector('.card4')
         const now = new Date()
-        weatherDataDiv.innerHTML = ''
+        
+        
         lengthofList = data.list.length
-
+        console.log(lengthofList)
         for (let i = 0; i < lengthofList; i++){
 
-            if(getDatefromDt(data.list[i].dt) ===  now.getDate()){
+            if((getDatefromDt(data.list[i].dt)).date ===  now.getDate()){
                 temps.push(data.list[i].main.temp)
                 icons.push(data.list[i].weather[0].icon)
-                time.push(convertUnixTime(data.list[i].dt).toString())
+                time.push(convertUnixTime(data.list[i].dt))
                 
             }
         }
-
+        weatherDataDiv.innerHTML = ''
+        console.log(time)
         if(temps.length == time.length){
             for (let i = 0; i < temps.length; i++) {
                 
@@ -111,7 +114,6 @@ let weather = {
     },
 
     otherDayWeatherDetails: function(data){
-        console.log(data)
         const result = [];
         const Card5 = document.querySelector('.card5')
 
@@ -127,7 +129,6 @@ let weather = {
             }
             entry.temperatures.push(temp);
             entry.icon.push(icons)
-            console.log(entry)
         }
         
         Card5.innerHTML = ''
