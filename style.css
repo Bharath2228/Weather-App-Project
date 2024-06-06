@@ -11,6 +11,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    flex-direction: column;
     font-size: auto;
     background: url('https://source.unsplash.com/random? Weather');
     background-repeat: no-repeat;

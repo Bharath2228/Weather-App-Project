@@ -140,7 +140,7 @@ let weather = {
              const dateMontdiv = document.createElement('div');
              dateMontdiv.classList.add('dateMonthDiv')
              const DateMonthElement = document.createElement('p')
-             DateMonthElement.textContent = `${entry.dt.date} / ${entry.dt.month}`;
+             DateMonthElement.textContent = `${entry.dt.date} / ${(entry.dt.month) + 1}`;
              dateMontdiv.appendChild(DateMonthElement)
              OtherdayWeather.appendChild(dateMontdiv)
             
