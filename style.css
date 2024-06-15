@@ -1,216 +1,317 @@
-*{
-    box-sizing: border-box;
-    font-family: sans-serif;
-}
-
-body{
-    height: 100vh;
+/* Global Styles */body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: #fff;
     margin: 0;
-    background: #222;
-    font-family: arial;
+    padding: 0;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     flex-direction: column;
-    font-size: auto;
-    background: url('https://source.unsplash.com/random? Weather');
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+    align-items: center;
 }
 
-.card1, 
-.card2, 
-.card3, 
-.card4, 
-.card5, 
-.card6{
-    height: fit-content;
-    background: #000000bd;
-    color: white;
-    padding: 2em;
-    border-radius: 30px;
-    width: 100%;
-    max-width: fit-content;
-    margin: 1em auto;
-    letter-spacing: 1px; 
-    
+.main-container {
+    width: 90%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
 }
 
 .search {
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-
-button{
-    margin: 0.5em;
-    border-radius: 50%;
-    padding: 6px 6px;
-    border: none;
-    height: auto;
-    width: 44px;
-    outline: none;
-    background: #7c7c7c;
-    color: white; 
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-}
-
-button:hover{
-    background: #7c7c7c6b;
-}
-
-.search-bar{
-    border: none;
-    outline: none;
-    padding: 0.4em 1em;
-    border-radius: 24px;
-    background: #7c7c7c;
-    color: white;
-    font-family: inherit;
-    font-size: 105%;
+    align-items: center;
+    margin-bottom: 30px;
     width: 100%;
 }
 
-.card2{
+.search-bar {
+    width: 70%;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    margin-right: 10px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-button {
+    background-color: #005bea;
+    border: none;
+    color: white;
+    padding: 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0044cc;
+}
+
+.search-button svg {
+    vertical-align: middle;
+}
+
+.card1-card2 {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    gap: 20px;
 }
 
-.card2-info{
-    padding: 10px;
-    font-weight: bolder;
-    background: #2b3d5262;
-    width: fit-content;
-    height: fit-content;
-    text-align: center;
-    border-radius: 20px;
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex: 1;
+    transition: transform 0.3s ease, background 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
-
-.card1{
-    box-sizing: border-box;
+.card:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.card1-info{
-    margin-top: 15px;
+.card-info p {
+    margin: 10px 0;
+}
+
+.card1 .timebox {
+    margin-top: 20px;
+}
+
+.card1 .timebox .date, .card1 .timebox .liveTime {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.card2-info {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding: 5px;
-    background: hsla(183, 28%, 29%, 0.715);
-    border-radius: 30px;
-    box-shadow: 1px 1px 10px rgb(66, 64, 64) ;
-    
+    align-items: center;
 }
 
-.card1-info p{
+.card2-info .temp {
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.card2-info .icon {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+}
+
+.card2-info .description {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.card2-info .feelsLike, .card2-info .tempminmax {
+    font-size: 16px;
+    color: #ccc;
+}
+
+#hourlyDisplayCard {
+    margin-top: 20px;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    overflow-x: scroll;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.card4 {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px;
+}
+
+.card4 > div {
+    flex: 0 0 auto;
+    min-width: 200px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+}
+
+
+#hourlyDisplayCard::-webkit-scrollbar {
+    height: 12px;
+  }
+  
+  #hourlyDisplayCard::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 5px;
+  }
+  
+  #hourlyDisplayCard::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px; 
+  }
+  
+  #hourlyDisplayCard::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+.hourlyWeather {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
     margin: 10px 10px;
-    width: 100%;
+    text-align: center;
+    width: 120px;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.weather{
+.hourlyWeather:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.weatherEntry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weatherEntry p {
+    margin: 5px 0;
+}
+
+.card3 {
     display: flex;
     justify-content: space-around;
+    margin-top: 20px;
+    width: 100%;
 }
 
-.timebox{
-    font-size: 110%;
-    margin: 15px 10px;
-    width: 80%;
+.weatherDetails {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.weatherDetails:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.weatherDetails img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.sixDaysForecast{
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
-    background: hsla(183, 28%, 29%, 0.715);
-    border-radius: 30px;
-    box-shadow: 1px 1px 10px rgb(66, 64, 64) ;
+    width: 40%;
+    margin: 20px 20px;
+    padding: 20px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.timebox .liveTime{
-    margin: 10px 10px;
-    text-align: center;
-}
-
-.description{
-    text-transform: capitalize;
-}
-
-.card4{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.weatherEntry{
-    background: #222222be;
-    padding: 15px;
-    text-align: center;
-    border-radius: 8px;
-}
-
-.weatherEntry p{
+.sixDaysForecast h1{
     margin: 0;
-}
-
-.card3 p{
-    font-size: 1em;
-}
-
-.card3 img{
-    width: 2em;
-    font-size: 2.5em;
-    
-}
-
-.card3{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    flex-wrap: wrap;
-    gap: 10px;
     text-align: center;
-    background: #f9f8f846;
+    color: hsla(0, 0%, 100%, 0.785);
 }
 
-.weatherDetails{
-    padding: 0;
-    width: 150px;
-}
-
-.card5{
-    background: hsla(203, 71%, 44%, 0.797);
-}
-.otherWeatherEntry{
+.card5 {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 0;
+    width: 100%;
+    max-width: 800px;
     
 }
 
-.dateMonthDiv {
-    width: 60px;
-    max-height: 100px;
-    
-
+.otherWeatherEntry {
+    display: flex;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    width: 70%;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
-.dateMonthDiv p {
-    font-size: 100%;
+.otherWeatherEntry:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.dateMonthDiv, .icondiv, .minTemp, .maxTemp {
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.dateMonthDiv p{
     white-space: nowrap;
-    overflow: hidden; 
 }
 
-/* .weather.loading{
-    visibility: hidden;
-    max-height: 20px;
+@media (max-width: 768px) {
+    .card1-card2 {
+        flex-direction: column;
+    }
+
+    .card1, .card2 {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .search-bar {
+        width: 60%;
+    }
 }
 
-.weather.loading:after{
-    visibility: visible;
-    content: "Loading Weather....";
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-} */
+@media (max-width: 480px) {
+    .search-bar {
+        width: 50%;
+    }
+
+    .hourlyWeather, .otherWeatherEntry {
+        width: 100px;
+    }
+
+    .weatherDetails {
+        width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .otherWeatherEntry {
+        flex-wrap: wrap;
+        font-size: 0.5em;
+    }
+
+    .dateMonthDiv, .icondiv, .minTemp, .maxTemp {
+        
+        flex: 1 1 100%;
+        margin: 10px 0;
+    }
+}
+
+

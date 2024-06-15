@@ -30,12 +30,12 @@ let weather = {
 
         const { name, sunrise, sunset, country} = data.city;
         const imageDiv = document.querySelector('.card1');
-        imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ name +"')"
-        imageDiv.style.backgroundRepeat = "no-repeat"
-        imageDiv.style.backgroundSize = "cover"
+        // imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ name +"')"
+        // imageDiv.style.backgroundRepeat = "no-repeat"
+        // imageDiv.style.backgroundSize = "cover"
         document.querySelector('.city').innerText = "City: " + name;
-        document.querySelector('.sunrise').innerText = `Sunrise 🌄: ${convertUnixTime(sunrise)}`
-        document.querySelector('.sunset').innerText = `Sunset 🌇: ${convertUnixTime(sunset)}`
+        document.querySelector('.sunrise').innerText = `Sunrise: ${convertUnixTime(sunrise)}`
+        document.querySelector('.sunset').innerText = `Sunset: ${convertUnixTime(sunset)}`
         document.querySelector('.country').innerText = `Counrty: ${country}`
         document.querySelector('.date').innerText = getTodaysDate()
         setInterval(updateClock, 1000)
@@ -48,9 +48,9 @@ let weather = {
         document.querySelector(".description").innerText = description;
         document.querySelector(".icon").src = "https://openweathermap.org/img/wn/" + icon +".png";
         const imageDiv = document.querySelector('.card2');
-        imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ description +"')"
-        imageDiv.style.backgroundRepeat = "no-repeat"
-        imageDiv.style.backgroundSize = "cover"
+        // imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ description +"')"
+        // imageDiv.style.backgroundRepeat = "no-repeat"
+        // imageDiv.style.backgroundSize = "cover"
         document.querySelector(".temp").innerText = temp + " °C"
         document.querySelector(".feelsLike").innerText = `Feels Like ${feels_like} °C`
         document.querySelector('.tempminmax').innerText = `${temp_min} ~ ${temp_max} °C`
@@ -81,22 +81,29 @@ let weather = {
         if(temps.length == time.length){
             for (let i = 0; i < temps.length; i++) {
                 
+                const hourlyWeatherDiv = document.createElement('div')
+                hourlyWeatherDiv.classList.add('hourlyWeather')
+
                 const EntryDiv = document.createElement('div')
                 EntryDiv.classList.add('weatherEntry')
 
                 const temp = document.createElement('p')
                 temp.textContent = `${Math.floor(temps[i])} °C`
                 EntryDiv.appendChild(temp)
+                hourlyWeatherDiv.appendChild(EntryDiv)
 
                 const icon = document.createElement('img')
                 icon.src = "https://openweathermap.org/img/wn/" + icons[i] +".png";
                 EntryDiv.appendChild(icon)
+                hourlyWeatherDiv.appendChild(EntryDiv)
 
                 const timeEle = document.createElement('p')
                 timeEle.textContent = `${time[i]}`
                 EntryDiv.appendChild(timeEle)
+                hourlyWeatherDiv.appendChild(EntryDiv)
 
-                weatherDataDiv.appendChild(EntryDiv)
+                weatherDataDiv.appendChild(hourlyWeatherDiv)
+                
 
             }
         }
