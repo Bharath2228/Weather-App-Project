@@ -10,19 +10,21 @@ body {
     box-sizing: border-box;
 }
 
-#header{
+#header {
     width: 100vw;
     display: flex;
     position: relative;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.weatherText{
+.weatherText {
     flex: 1;
     text-align: center;
     font-size: 2em;
 }
 
-.timebox{
+.timebox {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -32,10 +34,11 @@ body {
     flex-direction: column;
 }
 
-.timebox p{
+.timebox p {
     margin: 5px;
     font-size: 1.3em;
 }
+
 .main-container {
     width: 90%;
     max-width: 1200px;
@@ -84,8 +87,11 @@ body {
 
 .card1-card2 {
     display: flex;
-    width: 60%;
+    width: 100%;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .card {
@@ -98,9 +104,11 @@ body {
     backdrop-filter: blur(10px);
     color: #000;
     width: 100%;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
-.card1{
+.card1 {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,7 +116,15 @@ body {
     color: #000;
 }
 
-.card-info{
+.card2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #000;
+}
+
+.card-info {
     padding: 20px;
     height: 80%;
     width: 100%;
@@ -118,13 +134,13 @@ body {
     white-space: nowrap;
 }
 
-.card-info .city{
+.card-info .city {
     font-size: 3.5em;
     margin-top: 0;
 }
 
-.sunrise, .sunset{
-    text-align: left;
+.sunrise, .sunset {
+    text-align: center;
 }
 
 .card:hover {
@@ -158,7 +174,6 @@ body {
     font-size: 2em;
     margin-top: 0;
     text-transform: capitalize;
-
 }
 
 .card2-info .feelsLike, .card2-info .tempminmax {
@@ -166,9 +181,9 @@ body {
     color: #ffffff;
 }
 
-.titleHourly{
+.titleHourly {
     margin-top: 50px;
-    margin-bottom: 0px;    
+    margin-bottom: 0px;
     color: #000;
     font-weight: lighter;
 }
@@ -197,21 +212,21 @@ body {
 
 #hourlyDisplayCard::-webkit-scrollbar {
     height: 12px;
-  }
-  
-  #hourlyDisplayCard::-webkit-scrollbar-track {
+}
+
+#hourlyDisplayCard::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 5px;
-  }
-  
-  #hourlyDisplayCard::-webkit-scrollbar-thumb {
+}
+
+#hourlyDisplayCard::-webkit-scrollbar-thumb {
     background: #888;
-    border-radius: 5px; 
-  }
-  
-  #hourlyDisplayCard::-webkit-scrollbar-thumb:hover {
+    border-radius: 5px;
+}
+
+#hourlyDisplayCard::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
+}
 
 .hourlyWeather {
     background: rgba(255, 255, 255, 0.1);
@@ -240,7 +255,7 @@ body {
     margin: 5px 0;
 }
 
-.card3-sixDays{
+.card3-sixDays {
     display: flex;
     align-items: center;
     flex: 1;
@@ -282,7 +297,7 @@ body {
     margin-bottom: 10px;
 }
 
-.weatherDetails p{
+.weatherDetails p {
     width: 100%;
     font-family: monospace;
     font-size: 1.4em;
@@ -291,16 +306,15 @@ body {
     overflow: hidden;
 }
 
-.sixDaysForecast{
+.sixDaysForecast {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 40%;
     padding: 20px 20px;
-    
 }
 
-.sixDaysForecast h1{
+.sixDaysForecast h1 {
     margin: 0;
     text-align: center;
     color: #000;
@@ -312,7 +326,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
-    max-width: 800px; 
+    max-width: 800px;
 }
 
 .otherWeatherEntry {
@@ -338,11 +352,10 @@ body {
     flex: 1;
     margin: 0 10px;
     text-align: center;
-    
     color: #000;
 }
 
-.dateMonthDiv p{
+.dateMonthDiv p {
     white-space: nowrap;
 }
 
@@ -359,10 +372,68 @@ body {
     .search-bar {
         width: 60%;
     }
+}
 
-    .card4{
-        overflow-x: hidden;
-        overflow: auto;
+@media (max-width: 768px) {
+    .weatherText {
+        font-size: 1.5em;
+    }
+
+    .timebox {
+        position: static;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    .timebox p {
+        font-size: 1em;
+    }
+
+    .card1-card2 {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card-info .city {
+        font-size: 2.5em;
+    }
+
+    .card-info p {
+        font-size: 1.5em;
+    }
+
+    .card2-info .temp {
+        font-size: 36px;
+    }
+
+    .card2-info .description {
+        font-size: 1.5em;
+    }
+
+    .card2-info .feelsLike, .card2-info .tempminmax {
+        font-size: 1.2em;
+    }
+
+    .otherWeatherEntry {
+        flex-wrap: wrap;
+    }
+
+    .dateMonthDiv, .icondiv, .minTemp, .maxTemp { 
+        flex: 1 1 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        margin: 0;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width: 640px) {
+    .timebox {
+        visibility: hidden;
     }
 }
 
@@ -380,28 +451,7 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    .otherWeatherEntry {
-        flex-wrap: wrap;
-        
-    }
-
-    .dateMonthDiv, .icondiv, .minTemp, .maxTemp { 
-        flex: 1 1 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    p{
-        margin: 0;
-        margin-bottom: 5px;
-    }
+.card4 {
+    overflow-x: hidden;
+    overflow: auto;
 }
-
-@media (max-width: 640px){
-    .timebox{
-        visibility: hidden;
-    }
-}
-
-
