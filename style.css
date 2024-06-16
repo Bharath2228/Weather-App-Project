@@ -103,9 +103,9 @@ body {
     transition: transform 0.3s ease, background 0.3s ease;
     backdrop-filter: blur(10px);
     color: #000;
-    width: 100%;
+    max-width: 40%;
     box-sizing: border-box;
-    max-width: 100%;
+   
 }
 
 .card1 {
@@ -449,7 +449,14 @@ body {
     .weatherDetails {
         width: 150px;
     }
+
+    .card{
+        width: 100%;
+        max-width: 100%;
+    }
 }
+
+
 
 .card4 {
     overflow-x: hidden;
