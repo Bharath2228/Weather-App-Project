@@ -8,8 +8,15 @@
 </head>
 <body>
     <div id="header">
-        <h1>Weather App</h1>
+        <div class="weatherText">
+            <h1>Weather App</h1>
+        </div>
+        <div class="timebox">
+            <p class="date"></p>
+            <p class="liveTime"></p>
+        </div>
     </div>
+
     <div class="main-container">
         <div class="search">
             <input type="text" class="search-bar" placeholder="Search...">
@@ -21,18 +28,17 @@
         </div>
         <div class="card1-card2">
             <div class="card card1">
-                <div class="weather loading">
                     <div class="card-info">
-                        <p class="city"></p>
-                        <p class="country"></p>
-                        <p class="sunrise"></p>
-                        <p class="sunset"></p>
+                        <div class="divUp">
+                            <p class="city"></p>
+                            <p class="country"></p>
+                        </div>
+                        <div class="divDown">
+                            <p class="sunrise"></p>
+                            <p class="sunset"></p>
+                        </div>
+                        
                     </div>
-                    <div class="timebox">
-                        <p class="date"></p>
-                        <p class="liveTime"></p>
-                    </div>
-                </div>
             </div>
             <div class="card card2">
                 <div class="card-info card2-info">
@@ -44,35 +50,42 @@
                 </div>
             </div>
         </div>
+        <h1 class="titleHourly">Hourly Forecast</h1>
         <div id="hourlyDisplayCard">
             <div class="card4"></div>
         </div>
-        <div class="card3">
-            <div class="weatherDetails">
-                <img src="./Images/humidity.png" alt="Humidity Image">
-                <p>Humidity</p>
-                <p id="humidityElement"></p>
+
+        <div class="card3-sixDays">
+            
+            <div class="card3">
+                
+                <div class="weatherDetails">
+                    <img src="./Images/humidity.png" alt="Humidity Image">
+                    <p>Humidity</p>
+                    <p id="humidityElement"></p>
+                </div>
+                <div class="weatherDetails">
+                    <img src="./Images/pressure.png" alt="Pressure Image">
+                    <p>Pressure</p>
+                    <p id="pressureElement"></p>
+                </div>
+                <div class="weatherDetails">
+                    <img src="./Images/visibility.png" alt="Visibility Image">
+                    <p>Visibility</p>
+                    <p id="visibilityElement"></p>
+                </div>
+                <div class="weatherDetails">
+                    <img src="./Images/windy.png" alt="Windy Image">
+                    <p>Wind</p>
+                    <p id="windElement"></p>
+                </div>
             </div>
-            <div class="weatherDetails">
-                <img src="./Images/pressure.png" alt="Pressure Image">
-                <p>Pressure</p>
-                <p id="pressureElement"></p>
-            </div>
-            <div class="weatherDetails">
-                <img src="./Images/visibility.png" alt="Visibility Image">
-                <p>Visibility</p>
-                <p id="visibilityElement"></p>
-            </div>
-            <div class="weatherDetails">
-                <img src="./Images/windy.png" alt="Windy Image">
-                <p>Wind</p>
-                <p id="windElement"></p>
+            <div class="sixDaysForecast">
+                <h1> 6 Days Forecast</h1>
+                <div class="card5"></div>
             </div>
         </div>
-        <div class="sixDaysForecast">
-            <h1> 6 Days Forecast</h1>
-            <div class="card5"></div>
-        </div>
+        
         
     </div>
     <script src="app.js" defer></script>

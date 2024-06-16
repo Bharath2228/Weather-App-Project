@@ -2,6 +2,7 @@
 
 let weather = {
     "apiKey": "115adba2aef0c1b5bbc0d548d6543bee",
+    // "splashKey": "o7NEn4VC-wnJ1HNuZaEkM9O6t0zJbHLWm13J48_fI4s",
 
     fetchWeather: function(city){
         fetch("https://api.openweathermap.org/data/2.5/forecast?q="
@@ -24,6 +25,12 @@ let weather = {
         .then((data) => {
             this.displayWeather(data);
         })
+
+        // fetch(`https://api.unsplash.com/photos/?client_id=${this.splashKey}`)
+        // .then((response) => response.json())
+        // .then((data) => {
+        //     console.log(data)
+        // })
     },
 
     displayCityDetails: function(data) {
@@ -33,7 +40,7 @@ let weather = {
         // imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ name +"')"
         // imageDiv.style.backgroundRepeat = "no-repeat"
         // imageDiv.style.backgroundSize = "cover"
-        document.querySelector('.city').innerText = "City: " + name;
+        document.querySelector('.city').innerText = name;
         document.querySelector('.sunrise').innerText = `Sunrise: ${convertUnixTime(sunrise)}`
         document.querySelector('.sunset').innerText = `Sunset: ${convertUnixTime(sunset)}`
         document.querySelector('.country').innerText = `Counrty: ${country}`
@@ -51,7 +58,7 @@ let weather = {
         // imageDiv.style.background = "url('https://source.unsplash.com/1600x900/?"+ description +"')"
         // imageDiv.style.backgroundRepeat = "no-repeat"
         // imageDiv.style.backgroundSize = "cover"
-        document.querySelector(".temp").innerText = temp + " °C"
+        document.querySelector(".temp").innerText = Math.floor(temp) + "°C"
         document.querySelector(".feelsLike").innerText = `Feels Like ${feels_like} °C`
         document.querySelector('.tempminmax').innerText = `${temp_min} ~ ${temp_max} °C`
     },
@@ -206,8 +213,9 @@ function convertUnixTime(timefromAPI){
     const date = new Date(timefromAPI * 1000)
     let hour = date.getHours()
     let min = date.getMinutes()
-
-    timeFormat = `${hour}:${min}`
+    let meridiem = hour <= 12 ? "AM" : "PM"
+    hour = hour % 12 || 12
+    timeFormat = `${hour}:${min} ${meridiem}`
     return timeFormat;
 }
 
