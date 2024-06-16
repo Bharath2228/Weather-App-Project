@@ -436,6 +436,10 @@ body {
     .timebox {
         display: none;
     }
+    .card3-sixDays{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 480px) {
@@ -462,10 +466,7 @@ body {
         margin-top: 20px;
     }
 
-    .card3-sixDays{
-        display: flex;
-        flex-direction: column;
-    }
+    
 }
 
 
