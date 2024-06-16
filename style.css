@@ -162,6 +162,7 @@ body {
 
 .card2-info .temp {
     font-size: 48px;
+    margin-top: 0;
     margin-bottom: 0;
 }
 
@@ -415,8 +416,8 @@ body {
         font-size: 1.2em;
     }
 
-    .otherWeatherEntry {
-        flex-wrap: wrap;
+    .sixDaysForecast{
+        width: 100%;
     }
 
     .dateMonthDiv, .icondiv, .minTemp, .maxTemp { 
@@ -433,7 +434,7 @@ body {
 
 @media (max-width: 640px) {
     .timebox {
-        visibility: hidden;
+        display: none;
     }
 }
 
@@ -443,7 +444,9 @@ body {
     }
 
     .hourlyWeather, .otherWeatherEntry {
-        width: 100px;
+        width: 80%;
+        align-items: center;
+        padding: 0 20px;
     }
 
     .weatherDetails {
@@ -453,6 +456,15 @@ body {
     .card{
         width: 100%;
         max-width: 100%;
+    }
+
+    .card3{
+        margin-top: 20px;
+    }
+
+    .card3-sixDays{
+        display: flex;
+        flex-direction: column;
     }
 }
 
