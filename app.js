@@ -208,16 +208,19 @@ function getTodaysDate(){
     return (`${(date).toString().padStart(2, 0)}-${months[month]}-${year}`)
 }
 
-function convertUnixTime(timefromAPI){
-
-    const date = new Date(timefromAPI * 1000)
-    let hour = date.getHours()
-    let min = date.getMinutes()
-    let meridiem = hour <= 12 ? "AM" : "PM"
-    hour = hour % 12 || 12
-    timeFormat = `${hour}:${min} ${meridiem}`
+function convertUnixTime(timefromAPI) {
+    const date = new Date(timefromAPI * 1000);
+    let hour = date.getHours();
+    let min = date.getMinutes();
+    let meridiem = hour < 12 ? "AM" : "PM";
+  
+    hour = hour % 12 || 12; // convert to 12-hour format
+    min = min < 10 ? `0${min}` : min; // pad single-digit minutes
+  
+    const timeFormat = `${hour}:${min} ${meridiem}`;
     return timeFormat;
-}
+  }
+  
 
 function updateClock(){
     const now = new Date()
